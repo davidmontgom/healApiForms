@@ -1,0 +1,6 @@
+tests/.pytest_cache/*
+tests/.pytest_cache
+*.pyc
+.envrc
+*.icloud
+manual_runs.py
