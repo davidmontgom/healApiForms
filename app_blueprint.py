@@ -5,18 +5,7 @@ Blueprints are a way to organize related views and other code.  They are registe
 from flask import Blueprint
 from flask_restful import Api
 
-from healApiPractice.blueprints.alerts.alerts_blueprint import (
-    AlertResolveResource,
-    AlertResource,
-    AlertsResource,
-)
-from healApiPractice.blueprints.assessment_blueprint import PatientIntakeAssessments
-from healApiPractice.blueprints.care_protocol_blueprint import PatientSurgeryInfos
-from healApiPractice.blueprints.document_blueprint import PatientDocuments
-from healApiPractice.blueprints.nurse_users import NurseUser  # , NurseUsers
-from healApiPractice.blueprints.nurses.nurses_blueprint import NursesResource
-from healApiPractice.blueprints.patient_blueprint import Patient, PatientNotes
-from healApiPractice.blueprints.users_blueprint import Users
+from healApiForms.blueprints.forms.forms_blueprint import FormsResource
 
 
 def get_resource(app):
@@ -36,38 +25,11 @@ def get_resource(app):
     api_bp = Blueprint("api", __name__)
     api = Api(api_bp)
 
-    api.add_resource(NursesResource, "/nurses")
-    api.add_resource(NurseUser, "/nurseuser/<int:id>", "/nurseuser")
-
-    api.add_resource(Users, "/users", "/users")
 
     ##########################################
-    # ALERTS
+    # FORMS
     ##########################################
-    api.add_resource(AlertsResource, "/alerts")
-    api.add_resource(AlertResource, "/alerts/<int:user_id>")
-    api.add_resource(AlertResolveResource, "/alerts/resolve/<int:user_id>/<int:alert_id>")
-
-    ##########################################
-    # PATIENTS
-    ##########################################
-    api.add_resource(Patient, "/patient/<int:patient_id>")
-    api.add_resource(PatientNotes, "/patient/<int:patient_id>/notes")
-
-    ##########################################
-    # CARE_PROTOCOL
-    ##########################################
-    api.add_resource(PatientSurgeryInfos, "/patient/<int:patient_id>/surgery-infos")
-
-    ##########################################
-    # ASSESSMENT
-    ##########################################
-    api.add_resource(PatientIntakeAssessments, "/patient/<int:patient_id>/intake-assessments")
-
-    ##########################################
-    # DOCUMENT
-    ##########################################
-    api.add_resource(PatientDocuments, "/patient/<int:patient_id>/documents")
+    api.add_resource(FormsResource, "/forms/hmsa")
 
     app.register_blueprint(api_bp)
 
