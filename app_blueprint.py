@@ -29,7 +29,7 @@ def get_resource(app):
     ##########################################
     # FORMS
     ##########################################
-    api.add_resource(FormsResource, "/forms/hmsa")
+    api.add_resource(FormsResource, "/form/hmsa")
 
     app.register_blueprint(api_bp)
 
